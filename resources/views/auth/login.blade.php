@@ -14,30 +14,28 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                    </div>
+                        <div class="text-center">
+                            <h1 class="h5 text-gray-900 mb-3">LOGIN ADMIN</h1>
+                        </div>
 
-                    <div class="text-center">
-                        <h1 class="h5 text-gray-900 mb-3">LOGIN ADMIN</h1>
-                    </div>
-
-                    <form action="{{ route('login') }}" method="POST">
+                        <form action="{{ route('login') }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label class="font-weight-bold text-uppercase">Email address</label>
                             <input type="email" name="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" placeholder="Masukkan Alamat Email">
                             @error('email')
-                                <div class="alert alert-danger mt-2">
-                                    {{ $message }}
-                                </div>
+                            <div class="alert alert-danger mt-2">
+                                {{ $message }}
+                            </div>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label class="font-weight-bold text-uppercase">Password</label>
                             <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Masukkan Password">
                             @error('password')
-                                <div class="alert alert-danger mt-2">
-                                    {{ $message }}
-                                </div>
+                            <div class="alert alert-danger mt-2">
+                                {{ $message }}
+                            </div>
                             @enderror
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">LOGIN</button>
@@ -45,6 +43,7 @@
 
                         <a href="/forgot-password">Lupa Password ?</a>
                     </form>
+                    </div>
                 </div>
             </div>
         </div>

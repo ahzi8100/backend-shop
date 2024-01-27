@@ -14,5 +14,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
+});
+
+// route for admin
+
+Route::prefix('admin')->group(function () {
+    Route::group(['middleware' => 'auth'], function () {
+        //route dashboard
+        Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard.index');
+
+        //route category
+        Route::resource('/category', \App\Http\Controllers\Admin\CategoryController::class, ['as' => 'admin']);
+
+        //route product
+        Route::resource('/product', \App\Http\Controllers\Admin\ProductController::class, ['as' => 'admin']);
+    });
 });

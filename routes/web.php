@@ -29,5 +29,14 @@ Route::prefix('admin')->group(function () {
 
         //route product
         Route::resource('/product', \App\Http\Controllers\Admin\ProductController::class, ['as' => 'admin']);
+
+        //route order
+        Route::resource('/order', \App\Http\Controllers\Admin\OrderController::class,['except' => ['create','store','edit','update','destroy'], 'as' => 'admin']);
+
+        //route customer
+        Route::get('/customer', [\App\Http\Controllers\Admin\CustomerController::class, 'index'])->name('admin.customer.index');
+
+        //route slider
+        Route::resource('/slider', \App\Http\Controllers\Admin\SliderController::class, ['except' => ['show', 'create', 'edit', 'update'], 'as' => 'admin']);
     });
 });

@@ -48,10 +48,10 @@
                                 </form>
                             @else
 {{--                                Disable 2FA--}}
-                            <form action="{{ url('user/two-factor-authentication') }}">
+                            <form action="{{ url('user/two-factor-authentication') }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-primary text-uppercase" method="POST">
+                                <button type="submit" class="btn btn-primary text-uppercase">
                                     Disable Two-Factor
                                 </button>
                             </form>

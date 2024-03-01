@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Laravel\Fortify\TwoFactorAuthenticatable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, TwoFactorAuthenticatable;
 
     /**
      * The attributes that are mass assignable.
@@ -47,7 +48,8 @@ class User extends Authenticatable
     protected function avatarUrl(): Attribute
     {
         return Attribute::make(
-            get: fn($value) => 'https://ui-avatars.com/api/?name=' . str_replace(' ', '+' , $this->name) . '$background=4e73df&color=ffffff&size=100',
+            get: fn ($value) =>
+                'https://ui-avatars.com/api/?name=' . str_replace(' ', '+', $this->name) . '$background=4e73df&color=ffffff&size=100',
         );
     }
 }

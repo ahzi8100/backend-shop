@@ -15,17 +15,16 @@
                                 <label>GAMBAR</label>
                                 <input type="file" name="image" class="form-control">
                             </div>
-
                             <div class="form-group">
                                 <label>NAMA KATEGORI</label>
-                                <input type="text" name="name" value="{{ old('name', $category->name) }}" placeholder="Masukkan Nama Kategori" class="form-control @error('name') is-invalid @enderror">
+                                <input type="text" name="name" value="{{ old('name', $category->name) }}"
+                                placeholder="Masukkan Nama Kategori" class="form-control @error('name') is-invalid @enderror">
                                 @error('name')
                                 <div class="invalid-feedback" style="display: block">
                                     {{ $message }}
                                 </div>
                                 @enderror
                             </div>
-
                             <button class="btn btn-primary mr-1 btn-submit" type="submit"><i class="fa fa-paper-plane"></i> UPDATE</button>
                             <button class="btn btn-warning btn-reset" type="reset"><i class="fa fa-redo"></i> RESET</button>
                         </form>

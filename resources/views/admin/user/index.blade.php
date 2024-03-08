@@ -12,11 +12,14 @@
                             <div class="form-group">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <a href="{{ route('admin.user.create') }}" class="btn btn-primary btn-sm" style="padding-top: 10px;"><i class="fa fa-plus-circle"></i>TAMBAH</a>
+                                        <a href="{{ route('admin.user.create') }}" class="btn btn-primary btn-sm"
+                                            style="padding-top: 10px;"><i class="fa fa-plus-circle"></i>TAMBAH</a>
                                     </div>
-                                    <input type="text" class="form-control" name="q" placeholder="Cari berdasarkan nama user">
+                                    <input type="text" class="form-control" name="q"
+                                        placeholder="Cari berdasarkan nama user">
                                     <div class="input-group-append">
-                                        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i>CARI</button>
+                                        <button type="submit" class="btn btn-primary"><i
+                                                class="fa fa-search"></i>CARI</button>
                                     </div>
                                 </div>
                             </div>
@@ -24,37 +27,39 @@
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <thead>
-                                <tr>
-                                    <th scope="col" style="text-align: center; width: 6%">NO.</th>
-                                    <th scope="col">NAMA USERS</th>
-                                    <th scope="col">EMAIL</th>
-                                    <th scope="col" style="text-align: center; width: 15%">AKSI</th>
-                                </tr>
+                                    <tr>
+                                        <th scope="col" style="text-align: center; width: 6%">NO.</th>
+                                        <th scope="col">NAMA USERS</th>
+                                        <th scope="col">EMAIL</th>
+                                        <th scope="col" style="text-align: center; width: 15%">AKSI</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                @forelse($users as $no => $user)
-                                    <tr>
-                                        <th scope="row" style="text-align: center">
-                                            {{ ++$no + ($users->currentPage()-1) * $users->perPage() }}
-                                        </th>
-                                        <td>{{ $user->name }}</td>
-                                        <td>
-                                            {{ $user->email }}
-                                        </td>
-                                        <td class="text-center">
-                                            <a href="{{ route('admin.user.edit', $user->id) }}" class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a>
-                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $user->id }}"><i class="fa fa-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <div class="alert alert-danger">
-                                        Data Belum Tersedia!
-                                    </div>
-                                @endforelse
+                                    @forelse($users as $no => $user)
+                                        <tr>
+                                            <th scope="row" style="text-align: center">
+                                                {{ ++$no + ($users->currentPage() - 1) * $users->perPage() }}
+                                            </th>
+                                            <td>{{ $user->name }}</td>
+                                            <td>
+                                                {{ $user->email }}
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="{{ route('admin.user.edit', $user->id) }}"
+                                                    class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a>
+                                                <button onClick="Delete(this.id)" class="btn btn-sm btn-danger"
+                                                    id="{{ $user->id }}"><i class="fa fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <div class="alert alert-danger">
+                                            Data Belum Tersedia!
+                                        </div>
+                                    @endforelse
                                 </tbody>
                             </table>
                             <div style="text-align: center">
-                                {{ $users->links("vendor.pagination.bootstrap-4") }}
+                                {{ $users->links('vendor.pagination.bootstrap-4') }}
                             </div>
                         </div>
                     </div>
@@ -78,7 +83,7 @@
                     'YA'
                 ],
                 dangerMode: true,
-            }).then(function (isConfirm) {
+            }).then(function(isConfirm) {
                 if (isConfirm) {
                     //ajax delete
                     jQuery.ajax({
@@ -88,7 +93,7 @@
                             '_token': token
                         },
                         type: 'DELETE',
-                        success: function (response) {
+                        success: function(response) {
                             if (response.status == 'success') {
                                 swal({
                                     title: 'BERHASIL',
@@ -98,10 +103,10 @@
                                     showConfirmButton: false,
                                     showCancelButton: false,
                                     buttons: false,
-                                }).then(function () {
+                                }).then(function() {
                                     location.reload();
                                 });
-                            }else{
+                            } else {
                                 swal({
                                     title: 'GAGAL',
                                     text: 'DATA GAGAL DIHAPUS!',
@@ -110,7 +115,7 @@
                                     showConfirmButton: false,
                                     showCancelButton: false,
                                     buttons: false,
-                                }).then(function () {
+                                }).then(function() {
                                     location.reload();
                                 });
                             }
